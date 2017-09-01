@@ -1,0 +1,157 @@
+    <!--  Blog Section
+    ================================================== -->
+    <div id="tf-blog" class="blog">
+        <div class="container"> <!-- container -->
+            <div class="section-header">
+                <h2>Latest from the <span class="highlight"><strong>Blog</strong></span></h2>
+                <h5><em>{$website_tag}</em></h5>
+                <div class="fancy"><span><a href="{base_url()}home"><img src="{assets_url()}front/img/favicon.ico" alt="..."></a></span></div>
+            </div>
+        </div>
+
+        <div id="blog-post"> <!-- fullwidth gray background -->
+            <div class="container"><!-- container -->
+
+                <div class="row"> <!-- row -->
+                    <div class="col-md-6 col-md-offset-1"> <!-- Left Blogrol col 8 -->
+                    {if !empty($blog)}
+                        {foreach from=$blog item=blg}
+                        <div class="post-wrap"> <!-- Post Wrapper -->
+                            <div class="media post"> <!-- post wrap -->
+                                <div class="media-left"> 
+                                    <a href="{base_url()}blog/detail/{$blg->id}"> <!-- link to your post single page -->
+                                      <img class="media-object" src="http://placehold.it/120x150" alt="..."> <!-- Your Post Image -->
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <p class="small">{$blg->updated_at}</p>
+                                    <a href="{base_url()}blog/detail/{$blg->id}">
+                                        <h5 class="media-heading"><strong>{$blg->title}</strong></h5>
+                                    </a>
+                                    <p>{$blg->description} </p>
+                                </div>
+                            </div><!-- end post wrap -->
+                            
+                            <div class="post-meta"> <!-- Meta details -->
+                                <ul class="list-inline metas pull-left"> <!-- post metas -->
+                                    <li><a href="">by {$blg->id_user->name}</a></li> <!-- meta author -->
+                                    <li><a href="{base_url()}blog/detail/{$blg->id}">20 Comments</a></li> <!-- meta comments -->
+                                    <li><a href="{base_url()}blog/detail/{$blg->id}">Read More</a></li> <!-- read more link -->
+                                </ul>
+                                <ul class="list-inline meta-detail pull-right"> <!-- user meta interaction -->
+                                    <li><a href="#" style="pointer-events: none; cursor: default;"><i class="fa fa-heart"></i></a> {$blg->like}</li> <!-- like button -->
+                                    <li><i class="fa fa-eye"></i> {$blg->views}</li> <!-- no. of views -->
+                                </ul>
+                            </div><!-- end Meta details --> 
+                        </div><!-- end Post Wrapper -->
+                        {/foreach}
+                        
+                    {/if}
+                        
+                        <!-- {var_dump($blog)} -->
+                        <div class="text-left">
+                            <nav>
+                                <ul class="pagination">
+                                    <li>
+                                    {$pagination}
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                    </div> <!-- end Left content col 8 -->
+
+                    <div class="col-md-4"> <!-- Blog Sidebar -->
+                        <div class="sidebar">
+
+                            <form action="{base_url()}blog/search" method="get">
+                                <div class="widget search"> <!-- Search Widget -->
+                                    <div class="input-group">
+                                        <input name="keyword" type="text" autocomplete="off" class="form-control" placeholder="Search for...">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="submit"><span class="fa fa-search"></span></button>
+                                        </span>   
+                                    </div><!-- /input-group -->
+                                </div> <!-- end Search Widget -->
+                            </form>
+
+                            <div class="widget categories"> <!-- Category Widget -->
+                                <h4 class="text-uppercase">Category</h4>
+                                <ul class="list-unstyled bullet-lists">
+                                    {foreach from=$division item=div}
+                                    <li><a href="#" style="pointer-events: none; cursor: default;" ><span class="fa fa-circle"></span> {$div->name}</a></li>
+                                    {/foreach}
+                                </ul>
+                            </div>
+
+                            <!-- <div class="widget archive">
+                                <h4 class="text-uppercase">Archives</h4>
+                                <ul class="list-unstyled bullet-lists">
+                                    <li><a href="#"><span class="fa fa-circle"></span> March 2015</a></li>
+                                    <li><a href="#"><span class="fa fa-circle"></span> February 2015</a></li>
+                                    <li><a href="#"><span class="fa fa-circle"></span> January 2015</a></li>
+                                    <li><a href="#"><span class="fa fa-circle"></span> December 2015</a></li>
+                                    <li><a href="#"><span class="fa fa-circle"></span> November 2015</a></li>
+                                    <li><a href="#"><span class="fa fa-circle"></span> October 2015</a></li>
+                                    <li><a href="#"><span class="fa fa-circle"></span> September 2015</a></li>
+                                </ul>
+                            </div> -->
+
+                            <div class="widget post-tab"> <!-- Posts Tab Widget -->
+                                <div role="tabpanel">
+
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active"><a href="#popular" aria-controls="popular" role="tab" data-toggle="tab">Popular</a></li><!-- Popular Posts -->
+                                        <li role="presentation"><a href="#recent" aria-controls="recent" role="tab" data-toggle="tab">Recent</a></li><!-- Recent Posts -->
+                                        <li role="presentation"><a href="#comment" aria-controls="comment" role="tab" data-toggle="tab">Comment</a></li><!-- Comments -->
+                                    </ul>
+
+                                    <!-- Tab panes -->
+                                    <div class="tab-content"> 
+                                        <div role="tabpanel" class="tab-pane active" id="popular"><!-- Popular Posts -->
+                                            <div class="list-group">
+                                                {foreach from=$popular_blog item=p_blog}
+                                                <a href="{base_url()}blog/detail/{$p_blog->id}" class="list-group-item">
+                                                    <p class="small"><strong>Created on</strong> {$p_blog->created_at}</p>
+                                                    <h5 class="media-heading"><strong>{$p_blog->title}</strong></h5>
+                                                    <p class="small"><strong>{$p_blog->like} Likes</strong></p>
+                                                </a>
+                                                {/foreach}
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="recent"><!-- Recent Posts -->
+                                            <div class="list-group">
+                                                {foreach from=$recent_blog item=r_blog}
+                                                <a href="{base_url()}blog/detail/{$r_blog->id}" class="list-group-item">
+                                                    <p class="small">You may have not seen this post</p>
+                                                    <h5 class="media-heading"><strong>{$r_blog->title}</strong></h5>
+                                                    <p class="small"><strong>Created on </strong>{$r_blog->created_at}</p>
+                                                </a>
+                                                {/foreach}
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="comment"><!-- Comments -->
+                                            <div class="list-group">
+                                                {foreach from=$recent_comment item=r_comm}
+                                                <a href="{base_url()}blog/detail/{$r_comm->id_blog->id}" class="list-group-item">
+                                                    <p class="small">{$r_comm->id_user->name} <strong>Comments</strong> on: <strong>{$r_comm->id_blog->title}</strong></p>
+                                                    <h5 class="media-heading"><strong>{$r_comm->comment}</strong></h5>
+                                                    <p class="small">{$r_comm->created_at}</p>
+                                                </a>
+                                                {/foreach}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div><!-- end right content col 4 -->
+
+                </div>
+                       
+            </div><!-- end container -->
+        </div> <!-- end fullwidth gray background -->
+    </div>

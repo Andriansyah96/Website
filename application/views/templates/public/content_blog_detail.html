@@ -1,0 +1,179 @@
+    <!--  Blog Section
+    ================================================== -->
+    <div id="tf-blog" class="blog-post">
+        <div class="container"> <!-- container -->
+            <div class="section-header">
+                <h2>Latest from the <span class="highlight"><strong>Blog</strong></span></h2>
+                <h5><em>{$website_tag}</em></h5>
+                <div class="fancy"><span><a href="{base_url()}home"><img src="{assets_url()}front/img/favicon.ico" alt="..."></a></span></div>
+            </div>
+        </div>
+
+        <!-- {var_dump($blog)} -->
+
+        <div id="blog-post"> <!-- fullwidth gray background -->
+            <div class="container"><!-- container -->
+
+                <div class="row"> <!-- row -->
+                    <div class="col-md-6 col-md-offset-1"> <!-- Left Blogrol col 8 -->
+
+                        <div class="post-wrap"> <!-- Post Wrapper -->
+                            <p class="small">{$blog->created_at}</p>
+                            <a href="{base_url()}blog/detail/{$blog->id}">
+                                <h5 class="media-heading"><strong>{$blog->title}</strong></h5>
+                            </a>
+
+                            <ul class="list-inline metas pull-left"> <!-- post metas -->
+                                <li><a href="">by {$blog->id_user->name}</a></li> <!-- meta author -->
+                            </ul>
+
+                            {if empty($blog->photo)}
+                            <img src="http://placehold.it/800px500" class="img-responsive" alt="...">
+                            {else}
+                            <img src="{assets_url()}uploads/images/{$blog->photo}" class="img-responsive" alt="...">
+                            {/if}
+
+                            <p>{$blog->description}</p>
+
+                        </div><!-- end Post Wrapper -->
+
+                        <!-- {var_dump($comment)} -->
+                        {if !empty($comment)}
+                        <div id="comments" class="comment">
+                            <h4 class="text-uppercase">Comment <span class="comments">({count($comment)})</span></h4>
+                            {foreach from=$comment item=comm}
+                            <div class="media comment-block"> <!-- Comment Block #1 -->
+                                <div class="media-left media-top">
+                                    <a href="#" style="pointer-events: none; cursor: default;">
+                                    {if empty($comm->id_user->photo)}
+                                      <img class="img-circle" src="http://placehold.it/90x90" alt="...">
+                                    {else}
+                                      <img class="img-circle" style="height: 90px; width: 90px;" src="{assets_url()}uploads/images/{$comm->id_user->photo}" alt="...">
+                                    {/if}
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <small class="pull-right">{$comm->created_at}</small>
+                                    <h5 class="media-heading">{$comm->id_user->name} - <a href="#" style="pointer-events: none; cursor: default;">{$comm->id_user->email}</a></h5> 
+                                    <div class="clearfix"></div>
+                                    {$comm->comment}
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            {/foreach}
+                        </div>
+                        {/if}
+
+                        <!-- {var_dump($u_session)} -->
+                        <div class="comment">
+                            <h4 class="text-uppercase">Leave a Comment</h4>
+                            <form action="{base_url()}comment/add_comment/{$blog->id}" method="post" id="contact-form" class="form">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input name="user" autocomplete="off" type="hidden" class="form-control" value="{$u_session['id']}">
+                                    </div>
+                                    <!-- <div class="col-md-6">
+                                        <input name="email" autocomplete="off" type="hidden" class="form-control" value="{$u_session['email']}">
+                                    </div> -->
+                                </div>
+                                <textarea name="comment" class="form-control" rows="6" placeholder="Your Comment..."></textarea>
+                                <button type="submit" class="btn btn-default en-btn">Submit Comment</button>
+                            </form>
+                        </div>
+
+                    </div> <!-- end Left content col 8 -->
+
+                    <div class="col-md-4"> <!-- Blog Sidebar -->
+                        <div class="sidebar">
+
+                            <form action="{base_url()}blog/search" method="get">
+                                <div class="widget search"> <!-- Search Widget -->
+                                    <div class="input-group">
+                                        <input name="keyword" type="text" autocomplete="off" class="form-control" placeholder="Search for...">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="submit"><span class="fa fa-search"></span></button>
+                                        </span>   
+                                    </div><!-- /input-group -->
+                                </div> <!-- end Search Widget -->
+                            </form>
+
+                            <div class="widget categories"> <!-- Category Widget -->
+                                <h4 class="text-uppercase">Category</h4>
+                                <ul class="list-unstyled bullet-lists">
+                                    {foreach from=$division item=div}
+                                    <li><a href="#" style="pointer-events: none; cursor: default;" ><span class="fa fa-circle"></span> {$div->name}</a></li>
+                                    {/foreach}
+                                </ul>
+                            </div>
+
+                            <!-- <div class="widget archive">
+                                <h4 class="text-uppercase">Archives</h4>
+                                <ul class="list-unstyled bullet-lists">
+                                    <li><a href="#"><span class="fa fa-circle"></span> March 2015</a></li>
+                                    <li><a href="#"><span class="fa fa-circle"></span> February 2015</a></li>
+                                    <li><a href="#"><span class="fa fa-circle"></span> January 2015</a></li>
+                                    <li><a href="#"><span class="fa fa-circle"></span> December 2015</a></li>
+                                    <li><a href="#"><span class="fa fa-circle"></span> November 2015</a></li>
+                                    <li><a href="#"><span class="fa fa-circle"></span> October 2015</a></li>
+                                    <li><a href="#"><span class="fa fa-circle"></span> September 2015</a></li>
+                                </ul>
+                            </div> -->
+
+                            <div class="widget post-tab"> <!-- Posts Tab Widget -->
+                                <div role="tabpanel">
+
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active"><a href="#popular" aria-controls="popular" role="tab" data-toggle="tab">Popular</a></li><!-- Popular Posts -->
+                                        <li role="presentation"><a href="#recent" aria-controls="recent" role="tab" data-toggle="tab">Recent</a></li><!-- Recent Posts -->
+                                        <li role="presentation"><a href="#comment" aria-controls="comment" role="tab" data-toggle="tab">Comment</a></li><!-- Comments -->
+                                    </ul>
+
+                                    <!-- Tab panes -->
+                                    <div class="tab-content"> 
+                                        <div role="tabpanel" class="tab-pane active" id="popular"><!-- Popular Posts -->
+                                            <div class="list-group">
+                                                {foreach from=$popular_blog item=p_blog}
+                                                <a href="{base_url()}blog/detail/{$p_blog->id}" class="list-group-item">
+                                                    <p class="small"><strong>Created on</strong> {$p_blog->created_at}</p>
+                                                    <h5 class="media-heading"><strong>{$p_blog->title}</strong></h5>
+                                                    <p class="small"><strong>{$p_blog->like} Likes</strong></p>
+                                                </a>
+                                                {/foreach}
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="recent"><!-- Recent Posts -->
+                                            <div class="list-group">
+                                                {foreach from=$recent_blog item=r_blog}
+                                                <a href="{base_url()}blog/detail/{$r_blog->id}" class="list-group-item">
+                                                    <p class="small">You may have not seen this post</p>
+                                                    <h5 class="media-heading"><strong>{$r_blog->title}</strong></h5>
+                                                    <p class="small"><strong>Created on </strong>{$r_blog->created_at}</p>
+                                                </a>
+                                                {/foreach}
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="comment"><!-- Comments -->
+                                            <div class="list-group">
+                                                {foreach from=$recent_comment item=r_comm}
+                                                <a href="{base_url()}blog/detail/{$r_comm->id_blog->id}" class="list-group-item">
+                                                    <p class="small">{$r_comm->id_user->name} <strong>Comments</strong> on: <strong>{$r_comm->id_blog->title}</strong></p>
+                                                    <h5 class="media-heading"><strong>{$r_comm->comment}</strong></h5>
+                                                    <p class="small">{$r_comm->created_at}</p>
+                                                </a>
+                                                {/foreach}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div><!-- end right content col 4 -->
+
+                </div><!-- end row -->
+                      
+            </div><!-- end container -->
+        </div> <!-- end fullwidth gray background -->
+    </div>

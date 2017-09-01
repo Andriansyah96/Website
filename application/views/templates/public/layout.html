@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{if isset($website_name)}{$website_name}{/if}</title>
+    <meta name="description" content="Ethanol is an Agency and Personal Portfolio Template built with bootstrap 3.3.2. This is created for a cause to support my uncle's campaign. Go and Donate at - https://life.indiegogo.com/fundraisers/medical-support-for-a-filipino-overseas-worker--3/x/10058181">
+    <meta name="keywords" content="portfolio, agency, bootstrap theme, mobile responsive, template, personal">
+    <meta name="author" content="ThemeForces.Com">
+    
+    <!-- Favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="{assets_url()}front/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{assets_url()}front/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{assets_url()}front/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{assets_url()}front/img/apple-touch-icon-114x114.png">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css"  href="{assets_url()}front/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="{assets_url()}front/fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <!-- Nivo Lightbox
+    ================================================== -->
+    <link rel="stylesheet" href="{assets_url()}front/css/nivo-lightbox.css" >
+    <link rel="stylesheet" href="{assets_url()}front/css/nivo_lightbox_themes/default/default.css">
+
+    <!-- Slider
+    ================================================== -->
+    <link href="{assets_url()}front/css/owl.carousel.css" rel="stylesheet" media="screen">
+    <link href="{assets_url()}front/css/owl.theme.css" rel="stylesheet" media="screen">
+
+    <!-- Stylesheet
+    ================================================== -->
+    <link rel="stylesheet" type="text/css"  href="{assets_url()}front/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{assets_url()}front/css/responsive.css">
+
+    <!-- Google Fonts
+    ================================================== -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="{assets_url()}front/js/modernizr.custom.js"></script>
+
+  </head>
+  <body>
+
+    <!-- Main Navigation 
+    ================================================== -->
+    <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <a class="navbar-brand" href="{base_url()}home"><img src="{assets_url()}front/img/logo.png" alt="Logo POROS"></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="{base_url()}home#tf-home" class="scroll">Home</a></li>
+                <li><a href="{base_url()}home#tf-department" class="scroll">Department</a></li>
+                <li><a href="{base_url()}home#tf-division" class="scroll">Division</a></li>
+                <li><a href="{base_url()}home#tf-member" class="scroll">Member</a></li>
+                <li><a href="{base_url()}home#tf-product" class="scroll">Product</a></li>
+                <li><a href="{base_url()}home#tf-blog" class="scroll">Blog</a></li>
+                <li><a href="{base_url()}home#tf-contact" class="scroll">Contact</a></li>
+                {if $u_session['u_logged_in'] != 'true'}
+                <li><a href="{base_url()}home/login" class="glyphicon glyphicon-log-in"></a></li>
+                {else}
+                <li><a href="{base_url()}home/logout" class="glyphicon glyphicon-log-out" style="color: #14e648;"></a></li>
+                {/if}
+              </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    {if isset($content)}
+        {$content}
+    {/if}
+
+    <!-- Footer 
+    ================================================== -->
+    <div id="tf-footer">
+        <div class="container"><!-- container -->
+            <p class="pull-left">© 2017 POROS UB. Theme by Rudhi Sasmito Modified by POROS UB.</p> <!-- copyright text here-->
+            <ul class="list-inline social pull-right">
+                <li><a onclick="window.open('https://github.com/porosub');"><i class="fa fa-github"></i></a></li> <!-- Change # With your Github Link -->
+                <li><a href="{base_url()}home"><i class="fa fa-facebook"></i></a></li> <!-- Change # With your FB Link -->
+                <li><a onclick="window.open('https://twitter.com/poros_ub');"><i class="fa fa-twitter"></i></a></li> <!-- Change # With your Twitter Link -->
+                <li><a onclick="window.open('https://www.instagram.com/porosfilkom/');"><i class="fa fa-instagram"></i></a></li> <!-- Change # With your Instagram Link -->
+                <li><a onclick="window.open('https://www.youtube.com/channel/UC3Mh33VM0dwLlXiH_00qOJw');"><i class="fa fa-youtube"></i></a></li> <!-- Change # With your Youtube Link -->
+                
+            </ul>
+        </div><!-- end container -->
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{assets_url()}front/js/jquery.1.11.1.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="{assets_url()}front/js/bootstrap.js"></script>
+
+    <script type="text/javascript" src="{assets_url()}front/js/owl.carousel.js"></script><!-- Owl Carousel Plugin -->
+
+    <script type="text/javascript" src="{assets_url()}front/js/SmoothScroll.js"></script>
+
+    <!-- Google Map -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&amp;sensor=false"></script>
+    <script type="text/javascript" src="{assets_url()}front/js/map.js"></script>
+
+    <!-- Parallax Effects -->
+    <script type="text/javascript" src="{assets_url()}front/js/skrollr.js"></script>
+    <script type="text/javascript" src="{assets_url()}front/js/imagesloaded.js"></script>
+
+    <!-- Portfolio Filter -->
+    <script type="text/javascript" src="{assets_url()}front/js/jquery.isotope.js"></script>
+
+    <!-- LightBox Nivo -->
+    <script type="text/javascript" src="{assets_url()}front/js/nivo-lightbox.min.js"></script>
+
+    <!-- Contact page-->
+    <script type="text/javascript" src="{assets_url()}front/js/jqBootstrapValidation.js"></script>
+
+    <!-- Javascripts
+    ================================================== -->
+    <script type="text/javascript" src="{assets_url()}front/js/main.js"></script>
+    <script type="text/javascript" src="{assets_url()}front/js/uuid.js"></script>
+
+  </body>
+</html>

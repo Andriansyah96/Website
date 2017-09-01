@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <title>POROS | Admin</title>
+    <link rel="shortcut icon" href="{assets_url()}front/img/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap Core CSS -->
+    <link href="{assets_url()}admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="{assets_url()}admin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{assets_url()}admin/dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Morris Charts CSS -->
+    <link href="{assets_url()}admin/vendor/morrisjs/morris.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="{assets_url()}admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Grocery Crud -->
+    <!-- {if isset($gc_data->css_files)}
+    {foreach from=$gc_data->css_files item=file}
+    <link type="text/css" rel="stylesheet" href="{$file}" />
+    {/foreach}
+    {/if} -->
+
+    <!-- List -->
+    <link type="text/css" rel="stylesheet" href="{assets_url()}grocery_crud/themes/flexigrid/css/flexigrid.css" />
+    <link type="text/css" rel="stylesheet" href="{assets_url()}grocery_crud/css/jquery_plugins/fancybox/jquery.fancybox.css" />
+    <link type="text/css" rel="stylesheet" href="{assets_url()}grocery_crud/css/ui/simple/jquery-ui-1.10.1.custom.min.css" />
+
+    <!-- Add -->
+    <link type="text/css" rel="stylesheet" href="{assets_url()}grocery_crud/css/ui/simple/jquery-ui-1.10.1.custom.min.css" />
+    <link type="text/css" rel="stylesheet" href="{assets_url()}grocery_crud/css/jquery_plugins/file_upload/file-uploader.css" />
+    <link type="text/css" rel="stylesheet" href="{assets_url()}grocery_crud/css/jquery_plugins/file_upload/jquery.fileupload-ui.css" />
+    <link type="text/css" rel="stylesheet" href="{assets_url()}grocery_crud/css/jquery_plugins/fancybox/jquery.fancybox.css" />
+    <link type="text/css" rel="stylesheet" href="{assets_url()}grocery_crud/css/jquery_plugins/file_upload/fileuploader.css" />
+    <link type="text/css" rel="stylesheet" href="{assets_url()}grocery_crud/css/jquery_plugins/chosen/chosen.css" />
+    <link type="text/css" rel="stylesheet" href="{assets_url()}grocery_crud/css/jquery_plugins/jquery.ui.datetime.css" />
+    <link type="text/css" rel="stylesheet" href="{assets_url()}grocery_crud/css/jquery_plugins/jquery-ui-timepicker-addon.css" />
+    <link type="text/css" rel="stylesheet" href="{assets_url()}grocery_crud/themes/flexigrid/css/flexigrid.css" />
+    
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Administrator</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <!-- {var_dump($a_session)} -->
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> {$a_session['name']}</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="{base_url()}admin/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+
+                        <li class="sidebar-search">
+                            <!-- <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div> -->
+                            <!-- /input-group -->
+                        </li>
+
+                        <li>
+                            <a href="{base_url()}admin/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-users fa-fw"></i> Member<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{base_url()}admin/user/index/add"><i class="fa fa-pencil fa-fw"></i> Add Member</a>
+                                </li>
+                                <li>
+                                    <a href="{base_url()}admin/user"><i class="fa fa-list fa-fw"></i> List Member</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-calendar fa-fw"></i> Event<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{base_url()}admin/event/index/add"><i class="fa fa-pencil fa-fw"></i> Add Event</a>
+                                </li>
+                                <li>
+                                    <a href="{base_url()}admin/event"><i class="fa fa-list fa-fw"></i> List Event</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-rss-square fa-fw"></i> Blog<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{base_url()}admin/blog/index/add"><i class="fa fa-pencil fa-fw"></i> Add Blog</a>
+                                </li>
+                                <li>
+                                    <a href="{base_url()}admin/blog/index/2"><i class="fa fa-android fa-fw"></i> Android Mobile Apps</a>
+                                </li>
+                                <li>
+                                    <a href="{base_url()}admin/blog/index/1"><i class="fa fa-magic fa-fw"></i> Design UI/UX</a>
+                                </li>
+                                <li>
+                                    <a href="{base_url()}admin/blog/index/3"><i class="fa fa-linux fa-fw"></i> Operating System</a>
+                                </li>
+                                <li>
+                                    <a href="{base_url()}admin/blog/index/4"><i class="fa fa-bug fa-fw"></i> Security Network</a>
+                                </li>
+                                <li>
+                                    <a href="{base_url()}admin/blog/index/5"><i class="fa fa-html5 fa-fw"></i> Website Development</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-briefcase fa-fw"></i> Product<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{base_url()}admin/product/index/add"><i class="fa fa-pencil fa-fw"></i> Add Product</a>
+                                </li>
+                                <li>
+                                    <a href="{base_url()}admin/product/index/2"><i class="fa fa-android fa-fw"></i> Android Mobile Apps</a>
+                                </li>
+                                <li>
+                                    <a href="{base_url()}admin/product/index/1"><i class="fa fa-magic fa-fw"></i> Design UI/UX</a>
+                                </li>
+                                <li>
+                                    <a href="{base_url()}admin/product/index/3"><i class="fa fa-linux fa-fw"></i> Operating System</a>
+                                </li>
+                                <li>
+                                    <a href="{base_url()}admin/product/index/4"><i class="fa fa-bug fa-fw"></i> Security Network</a>
+                                </li>
+                                <li>
+                                    <a href="{base_url()}admin/product/index/5"><i class="fa fa-html5 fa-fw"></i> Website Development</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="{base_url()}admin/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            {if isset($content)}
+                {$content}
+            {/if}
+            <br>
+            <section class="content">
+                <div class="row">
+                {if isset($main_content)}
+                  {$main_content}
+                {/if}
+                {if isset($gc_data->output)}
+                  <section class="col-lg-12">
+                     {$gc_data->output}
+                  </section>
+                {/if}
+                </div>
+                <!-- /.row -->
+            </section>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="{assets_url()}admin/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{assets_url()}admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="{assets_url()}admin/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="{assets_url()}admin/vendor/raphael/raphael.min.js"></script>
+    <script src="{assets_url()}admin/vendor/morrisjs/morris.min.js"></script>
+    <script src="{assets_url()}admin/data/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{assets_url()}admin/dist/js/sb-admin-2.js"></script>
+
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="{assets_url()}admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="{assets_url()}admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Sparkline -->
+    <script src="{assets_url()}admin/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="{assets_url()}admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="{assets_url()}admin/plugins/fastclick/fastclick.js"></script>
+    
+    <!-- Grocery Crud -->
+    <!-- {if isset($gc_data->js_files)}
+    {foreach from=$gc_data->js_files item=file}
+    <script src="{$file}"></script>
+    {/foreach}
+    {/if} -->
+
+    <!-- List -->
+    <!-- <script src="{assets_url()}grocery_crud/js/jquery-1.11.1.min.js"></script> -->
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/jquery.noty.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/config/jquery.noty.config.js"></script>
+    <script src="{assets_url()}grocery_crud/js/common/lazyload-min.js"></script>
+    <script src="{assets_url()}grocery_crud/js/common/list.js"></script>
+    <script src="{assets_url()}grocery_crud/themes/flexigrid/js/cookies.js"></script>
+    <script src="{assets_url()}grocery_crud/themes/flexigrid/js/flexigrid.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/jquery.form.min.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/jquery.numeric.min.js"></script>
+    <script src="{assets_url()}grocery_crud/themes/flexigrid/js/jquery.printElement.min.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/jquery.fancybox-1.3.4.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/jquery.easing-1.3.pack.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/ui/jquery-ui-1.10.3.custom.min.js"></script>
+
+    <!-- Add -->
+    <!-- <script src="{assets_url()}grocery_crud/js/jquery-1.11.1.min.js"></script> -->
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/ui/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/config/jquery.datepicker.config.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/tmpl.min.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/load-image.min.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/jquery.iframe-transport.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/jquery.fileupload.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/config/jquery.fileupload.config.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/jquery.fancybox-1.3.4.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/jquery.easing-1.3.pack.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/config/jquery.fancybox.config.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/jquery.chosen.min.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/config/jquery.chosen.config.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/jquery-ui-timepicker-addon.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/config/jquery-ui-timepicker-addon.config.js"></script>
+    <script src="{assets_url()}grocery_crud/themes/flexigrid/js/jquery.form.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/jquery.form.min.js"></script>
+    <script src="{assets_url()}grocery_crud/themes/flexigrid/js/flexigrid-add.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/jquery.noty.js"></script>
+    <script src="{assets_url()}grocery_crud/js/jquery_plugins/config/jquery.noty.config.js"></script>
+
+</body>
+
+</html>
